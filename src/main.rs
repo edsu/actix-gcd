@@ -19,14 +19,14 @@ fn post_gcd(form: web::Form<GcdParameters>) -> HttpResponse {
                  is <b>{}</b>\n",
                  form.n, form.m, gcd(form.n, form.m));
 
-    HttpResponse.ok()
+    HttpResponse::Ok()
         .content_type("text/html")
         .body(response)
 }
 
 fn main() {
     let server = HttpServer::new(|| {
-        App.new()
+        App::new()
            .route("/", web::get().to(get_index))
            .route("/gcd", web::post().to(post_gcd))
     });
